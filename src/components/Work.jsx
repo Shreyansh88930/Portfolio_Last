@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import project1 from "../assets/logo.png";
 import project2 from "../assets/safety.png";
@@ -7,11 +6,18 @@ import project4 from "../assets/ecom.png";
 import project5 from "../assets/recipe.png";
 import project6 from "../assets/weather.jpeg";
 import project7 from "../assets/task.jpg";
+import pollProject from "../assets/poll.png";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 const Work = () => {
     const projects = [
+        {
+            id: 0,
+            title: "Poll Automation Project",
+            description: "Developed an AI-powered Poll Automation web application that allows meeting hosts to generate real-time polls from live audio transcripts. Features role-based dashboards, dynamic exports (CSV, PDF, JSON), analytics, and speech-to-text integration.",
+            image: pollProject,
+            link: "https://pollautomationdev.netlify.app/"
+        },
         {
             id: 1,
             title: "Spotify Clone",
@@ -38,7 +44,7 @@ const Work = () => {
             title: "E-Commerce Website",
             description: "A full-stack e-commerce website allowing users to browse products, add to cart, and checkout. Built with React.js and Firebase for real-time data management, featuring secure user authentication and smooth shopping experience.",
             image: project4,
-            link: "https://github.com/Shreyansh88930/ECommerceWebsite"
+            link: "https://github.com/Shreyansh88930/E_Com"
         },
         {
             id: 5,
@@ -63,28 +69,23 @@ const Work = () => {
         },
     ];
 
-    const { ref, inView } = useInView({
-        triggerOnce: true,
-        threshold: 0.2,
-    });
-
     return (
         <div id="work" className='py-12'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
                 <motion.h2
-                    ref={ref}
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                    className='text-4xl text-white underline font-bold text-center mb-12'
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5 }}
+                    className='text-4xl text-white underline font-bold text-center mb-6'
                 >
                     My Work
                 </motion.h2>
                 <motion.p
-                    ref={ref}
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.5, duration: 0.5 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
                     className='mb-12 text-gray-400 text-center'
                 >
                     Explore my projects where innovation meets functionality, and ideas come to life through code.
@@ -92,11 +93,11 @@ const Work = () => {
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
                     {projects.map((project) => (
                         <motion.div
-                            ref={ref}
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: project.id * 0.1, duration: 0.3 }}
                             key={project.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: 0.5, delay: project.id * 0.1 }}
                             className='bg-gray-900 shadow-lg rounded-lg overflow-hidden'
                         >
                             <img src={project.image} alt={project.title} className='w-full h-48 object-cover' />
@@ -115,6 +116,6 @@ const Work = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Work;
